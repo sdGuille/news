@@ -12,4 +12,3 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = UserChangeForm.Meta.fields
-print("My code editor is not saving my files properly")
