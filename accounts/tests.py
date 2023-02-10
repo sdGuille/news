@@ -13,4 +13,20 @@ class SingupPageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "registration/signup.html")
 
+    def test_signup_form(self):
+        response = self.client.post(
+            reverse("singup"),
+            {
+                "username": "testuser",
+                "email": "testuser@email.com",
+                "password1": "testpass123",
+                "password2": "testpass123", 
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(get_user_model().objects.all().count(), 1)
+        self.assertEqual(get_user_model().objects.all()[0].username, "testuser")
+        self.assertEqual(get_user_model().objects.all()[0].email, "testuser@email.com")
+
+
 # Create your tests here.
